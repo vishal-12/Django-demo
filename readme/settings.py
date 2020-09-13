@@ -14,12 +14,17 @@ import os
 from os.path import join, dirname
 from dotenv import load_dotenv
 import datetime
-
+#
 dotenv_path = join(dirname(__file__), '../.env')
 load_dotenv(dotenv_path)
 
+template_name = os.getenv("template")
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -96,7 +101,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-print (DATABASES)
 
 
 # Password validation
@@ -185,3 +189,7 @@ LOGGING = {
         },
     }
 }
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+
+STATIC_URL = '/static/'

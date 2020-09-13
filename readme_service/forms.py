@@ -1,28 +1,32 @@
 from django import forms
 from readme_service.models import ReadMeModel
 
+
 class ReadMeForms(forms.ModelForm):
     class Meta:
         model = ReadMeModel
-        fields =['FileType','PerformanceYear','QuarterOrAnualIswntifier',
-                  'KnownData','expectedFieldChanges','UpcomingChanges','UserName']
+        fields =['FileType','Managed_care_plan','PerformanceYear','QuarterOrAnnualIdentifier',
+                  'KnownData','ChangestotheFileinthisDelivery','UpcomingChanges']
 
-    name = forms.CharField(label='File Type')
+    FileType = forms.CharField(label='File Type')
+    
+    Managedcareplan = forms.CharField(
+        label ='Managed Care Plan')
+    
     PerformanceYear = forms.CharField(
-        label='Performance year(s)'
+        label='Performance year'
     )
-    QuarterOrAnualIswntifier = forms.CharField(
-        label='Quarter or Annual Identifier(s)'
+    QuarterOrAnnualIdentifier = forms.CharField(
+        label='Quarter or Annual Identifier'
     )
+   
     KnownData=forms.CharField(
         label='Known data quality issues'
     )
-    expectedFieldChanges=forms.CharField(
-        label='Expected Field changes'
+    ChangestotheFileinthisDelivery=forms.CharField(
+        label='Changes to the File in this Delivery' 
     )
     UpcomingChanges=forms.CharField(
-        label='Upcoming changes approved by ODM'
+        label='Upcoming Changes approved by ODM and Tentative Date'
     )
-    UserName = forms.CharField(
-        label='User Name'
-    )
+    
