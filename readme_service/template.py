@@ -36,10 +36,10 @@ def template(data,username):
     elif data.get("FileType") == 'File_D  MCP_payment_and_attribution_validation File for CPC':
         File_name='Readme_D_MCP_payment_and_attribution_validation_'+quarter_filename+'.doc'
     elif data.get("FileType") == 'File_J  CPC Practice Summary Report/ CPC Partnership Summary Report File':
-        File_name='Readme.V005.SUMM.ACR.'+'.doc'
+        File_name='Readme.V005.SUMM.ACR.'+quarter_filename+'.doc'
     elif data.get("FileType") == 'File_O CPC Member-level provider report CSV data file for MCPs':
-        File_name='Readme.V005.DETL.ACR.'+'.doc'
+        File_name='Readme.V005.DETL.ACR.'+quarter_filename+'.doc'
     elif data.get("FileType") == 'File_G5 CPC Shared savings payment file for MCPs':
-        File_name='Readme.V005.CPC.ACPR.'+'.doc'
+        File_name='Readme.V005.CPC.ACPR.'+quarter_filename+'.doc'
 
     return email_data,File_name,attachment

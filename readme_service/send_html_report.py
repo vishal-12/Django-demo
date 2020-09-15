@@ -4,14 +4,9 @@ import jinja2
 def file_operation(template_name,data_json,user_data):
     '''context manager for templating'''
     try:
-        length = len(data_json)
-        for count in range(length):
-            #exep = join(exec_path,basename(template_name))
-            with ContextManager(template_name,'r') as infile: #, ContextManager(exep,'w') as outfile:
-                data = data_json[count]
-                if isinstance(data,dict):
-                    data["UserName"] =user_data
-                render = Template(infile.read()).render(data)
+        data_json["UserName"] = user_data
+        with ContextManager(template_name,'r') as infile: #, ContextManager(exep,'w') as outfile:
+                render = Template(infile.read()).render(data_json)
                 return render
     except (IOError,TemplateSyntaxError,jinja2.exceptions.UndefinedError) as error:
         print ("getting error in jinja {}".format(error))

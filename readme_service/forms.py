@@ -1,8 +1,8 @@
 from django import forms
 from readme_service.models import ReadMeModel
 
-
 class ReadMeForms(forms.ModelForm):
+
     class Meta:
         model = ReadMeModel
         fields =['FileType','Managed_care_plan','PerformanceYear','QuarterOrAnnualIdentifier',

@@ -10,6 +10,7 @@ import os
 from os.path import join, dirname
 from dotenv import load_dotenv
 import datetime
+import ast
 #
 dotenv_path = join(dirname(__file__), '../.env')
 load_dotenv(dotenv_path)
@@ -52,16 +53,20 @@ class ReadMeAdmin(admin.ModelAdmin):
 
         html_email_data = list()
         while count1 < length:
-            email_data_bt_jinja=file_operation(template_name,requested_data,request.user)
+            email_data_bt_jinja=file_operation(template_name,requested_data[count1],request.user)
             html_email_data.append(email_data_bt_jinja)
             count1+=1
-        send_from ="YOUR EMAIL"
-        send_to =["YOUR EMAIL"]
+        send_from =  os.getenv("send_from")
+        sender = os.getenv("send_to")
+        send_to = ast.literal_eval(sender)
+
         subject ="Regarding : DXC Readme File Report"
         attachment = html_email_data #attachments
         email_body=   email_body_data
-        password = "Password"
+        password = os.getenv("password")
         filename = filename
+
+        #print ("html_email_data",html_email_data)
         #print (send_from,send_to,subject,email_body,attachments,password,filename)
         email = Email(send_from=send_from, send_to=send_to, subject=subject, email_body=email_body, attachment=attachment,
                                   password=password, filename=filename)

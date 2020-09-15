@@ -42,12 +42,10 @@ class Email(object):
 
         if self.attachment and self.filename:
             for count, filename in enumerate(self.filename):
-                print(count, filename, self.attachment[count])
                 part = MIMEBase("application", "octet-stream")
                 part.set_payload(self.attachment[count])
                 encoders.encode_base64(part)
-
-                # Add header as key/value pair to attachment part
+                # Add header as key/value pair to attachment part;cl/.
                 # filename= self.filename
 
                 part.add_header(
@@ -85,62 +83,4 @@ class Email(object):
             raise
 
         self.logger.info("task.status success")
-
-#
-# if __name__ == "__main__":
-#     send_from = "vibhu0891@gmail.com"  # "put hour email id here"  #example "abc@gmail.com"
-#     send_to = [
-#         "vibhu0891@gmail.com"]  # ["put the email id whom you want to add into to"]   #example ["emailid1@gmail.com","email-id-2@gmail.com"]
-#     subject = "This is the test email"  # example "this is the test email"
-#     password = "Kaushik93!!"  # example "Kaushik93!!"  #"your gmail password"
-#     email_body = '''
-#
-#
-#         this is the email body email
-#
-#         '''  # "this is the test email "
-#     attachment = ["attachment", "new", "start", "fuck"]
-#     filename = ["vishal.txt", "aman.txt", "raman.txt"]
-#     aa = Email(send_from=send_from, send_to=send_to, subject=subject, email_body=email_body, attachment=attachment,
-#                password=password, filename=filename)
-#     aa.send_mail()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-##if __name__=="__main__":
-##
-##    parser = argparse.ArgumentParser(description='Input information about job logs.')
-##
-##    parser.add_argument('--send_from', dest='send_from' , required=True, help='Please enter send_from of sender')
-##    #parser.add_argument('--send_to', dest='send_to' , required=True, help='Please enter email address at which you want to send to')
-##    parser.add_argument('--send_to','--list', nargs='+', help='it will append the string to list', required=True)
-##    parser.add_argument('--subject', dest='subject' , required=True, help='Please enter URL of Vcenter')
-##    parser.add_argument('--password', dest='password' , required=True, help='Please enter password of email')
-##    parser.add_argument('--email_body', dest='email_body' , required=True, help='Please enter email_body of sender')
-##    args = parser.parse_args()
-##    a=Email(args.send_from,args.send_to,args.subject,args.email_body,args.password)
-##    a.send_mail()
-
-
-
 
