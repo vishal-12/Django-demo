@@ -1,4 +1,5 @@
 
+import datetime
 def template(data,username):
     email_data = "               ReadMe File \n\n" \
                      "1.File Type : {} \n\n" \
@@ -28,6 +29,8 @@ def template(data,username):
         quarter=data.get("QuarterOrAnnualIdentifier")
     quarter_filename=str(data.get("PerformanceYear"))+'_'+str(quarter)+'_'+str(data.get("ManagedCarePlan"))
 
+    date_field = str(data.get("start_date")) + str(data.get("end_date"))
+    yyyy, mm, dd = str(datetime.datetime.today()).split(' ')[0].split("-")
     File_name = None
     if data.get("FileType") == 'File_R MCP_Quarterly_Enrollment_File':
         File_name='Readme_CPC_Medicaid_Managed_Care_Plan_Quarterly_Enrollment_File_'+quarter_filename+'.doc'
@@ -36,10 +39,10 @@ def template(data,username):
     elif data.get("FileType") == 'File_D  MCP_payment_and_attribution_validation File for CPC':
         File_name='Readme_D_MCP_payment_and_attribution_validation_'+quarter_filename+'.doc'
     elif data.get("FileType") == 'File_J  CPC Practice Summary Report/ CPC Partnership Summary Report File':
-        File_name='Readme.V005.SUMM.ACR.'+quarter_filename+'.doc'
+        File_name='Readme.V005.SUMM.ACR.'+date_field+ yyyy+'.doc'
     elif data.get("FileType") == 'File_O CPC Member-level provider report CSV data file for MCPs':
-        File_name='Readme.V005.DETL.ACR.'+quarter_filename+'.doc'
+        File_name='Readme.V005.DETL.ACR.'+date_field+ yyyy+'.doc'
     elif data.get("FileType") == 'File_G5 CPC Shared savings payment file for MCPs':
-        File_name='Readme.V005.CPC.ACPR.'+quarter_filename+'.doc'
+        File_name='Readme.V005.CPC.ACPR.'+date_field+ yyyy+'.doc'
 
     return email_data,File_name,attachment

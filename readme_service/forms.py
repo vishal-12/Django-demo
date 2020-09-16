@@ -8,8 +8,15 @@ class ReadMeForms(forms.ModelForm):
         fields =['FileType','Managed_care_plan','PerformanceYear','QuarterOrAnnualIdentifier',
                   'KnownData','ChangestotheFileinthisDelivery','UpcomingChanges']
 
-    FileType = forms.CharField(label='File Type')
-    
+    FileType = forms.CharField(label='Start File Type')
+    start_date = forms.DateField(
+        widget=forms.DateInput(format='%m/%d/%Y'),attrs={'class': 'datepicker'},
+        input_formats=('%m/%d/%Y',),label='Start Date'
+    )
+    end_date = forms.DateField(
+        widget=forms.DateInput(format='%m/%d/%Y'),attrs={'class': 'datepicker'},
+        input_formats=('%m/%d/%Y',),label='End File Date'
+    )
     Managedcareplan = forms.CharField(
         label ='Managed Care Plan')
     

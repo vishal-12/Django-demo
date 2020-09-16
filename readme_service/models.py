@@ -1,9 +1,5 @@
 from django.db import models
-from django import forms
-import os
-import sys
-from jinja2 import Template
-from django.forms.widgets import Textarea
+import datetime
 
 File_Type = [
         ('File_R MCP_Quarterly_Enrollment_File','File_R MCP_Quarterly_Enrollment_File'),
@@ -37,6 +33,8 @@ class ReadMeModel(models.Model):
 
     id = models.AutoField(primary_key=True)
     FileType = models.CharField(max_length=256, verbose_name='File Type', default='none', choices=File_Type)
+    start_date = models.DateField(default=datetime.date.today,verbose_name='Start Date')
+    end_date = models.DateField(default=datetime.date.today,verbose_name='End Date')
     ManagedCarePlan= models.CharField(max_length=256, verbose_name='Managed Care Plan',default ='none',choices=Managed_Care_Plan_OPTIONS)
     PerformanceYear = models.CharField(max_length=256, verbose_name='Performance Year',default='none',choices=PerformaceYear_OPTIONS)
     QuarterOrAnnualIdentifier = models.CharField(max_length=256,verbose_name='Quarter or Annual Identifier',default='none',choices=QuarterOrAnnualIdentifier_OPTIONS)

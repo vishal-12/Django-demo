@@ -19,7 +19,7 @@ template_name = os.getenv("template")
 
 @admin.register(ReadMeModel)
 class ReadMeAdmin(admin.ModelAdmin):
-    list_display = ['id','FileType','ManagedCarePlan','PerformanceYear','QuarterOrAnnualIdentifier',
+    list_display = ['id','FileType','start_date','end_date','ManagedCarePlan','PerformanceYear','QuarterOrAnnualIdentifier',
                    'KnownData','ChangestotheFileinthisDelivery','UpcomingChanges']
     #readonly_fields = ('created_at','updated_at')
     formfield_overrides = {
@@ -29,7 +29,12 @@ class ReadMeAdmin(admin.ModelAdmin):
 
     actions = ['send_email']
 
+    # def get_form(self, request, obj=None, **kwargs):
+    #     print ("obje-",dir(obj))
+    #     print("request-", dir(request))
+
     def save_model(self, request, obj, form, change):
+        print (dir(self))
         obj.user = request.user
         if obj.user.is_authenticated:
             print ("current logged in user is {}".format(obj.user))
